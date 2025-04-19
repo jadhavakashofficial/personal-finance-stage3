@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Personal Finance Tracker – Stage 3
 
-## Getting Started
+A simple web application to track personal expenses, view monthly trends, and manage category-wise budgets. Built using Next.js, React, TailwindCSS (shadcn/ui), and Recharts. Uses LocalStorage for persistence (no backend).
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### ✅ Stage 1: Basic Transaction Tracker
+- Add/Edit/Delete transactions
+- Amount, date, and description fields
+- Transaction list view
+- Monthly expenses bar chart
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### ✅ Stage 2: Categories
+- Select from predefined categories (food, travel, etc.)
+- Category-wise pie chart
+- Dashboard with summary cards (total, top category, recent)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### ✅ Stage 3: Budgeting
+- Set monthly budget per category
+- Budget vs actual spending progress bars
+- Insights like "✅ Under Budget" or "⚠️ Overspent"
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 💻 Tech Stack
 
-## Learn More
+- Next.js (App Router)
+- React 18
+- Tailwind CSS with shadcn/ui
+- Recharts for charting
+- LocalStorage 
 
-To learn more about Next.js, take a look at the following resources:
+## 🔗 Live Demo
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+> [**Deployed on Vercel**](https://your-vercel-link.vercel.app)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📂 Folder Structure
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

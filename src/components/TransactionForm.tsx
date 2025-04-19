@@ -12,6 +12,7 @@ import BudgetManager from './BudgetManager'
 import BudgetInsights from './BudgetInsights'
 import ClientOnly from './ClientOnly'
 
+
 interface Transaction {
   amount: string
   date: string
@@ -26,6 +27,7 @@ export default function TransactionForm() {
   const [category, setCategory] = useState('')
   const [error, setError] = useState('')
   const [transactions, setTransactions] = useState<Transaction[]>([])
+
 
   useEffect(() => {
     const stored = localStorage.getItem('transactions')
