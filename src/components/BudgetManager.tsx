@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { Input } from '@/components/ui/input'
-import { Card, CardContent } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
+import { Card } from '@/components/ui/card'
 
 const categories = ['food', 'travel', 'bills', 'shopping', 'others']
 
@@ -44,9 +43,9 @@ export default function BudgetManager() {
             />
           </div>
         ))}
-<div className="text-center mt-4 text-green-700 font-medium text-sm">
-  ✅ Budgets are saved automatically
-</div>
+        <div className="text-center mt-4 text-green-700 font-medium text-sm">
+          ✅ Budgets are saved automatically
+        </div>
       </Card>
     </div>
   )
