@@ -8,6 +8,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import MonthlyChart from './chart/MonthlyChart'
 import CategoryChart from './chart/CategoryChart'
 import DashboardSummary from './DashboardSummary'
+import BudgetManager from './BudgetManager'
+import BudgetInsights from './BudgetInsights'
+import ClientOnly from './ClientOnly'
 
 interface Transaction {
   amount: string
@@ -24,7 +27,6 @@ export default function TransactionForm() {
   const [error, setError] = useState('')
   const [transactions, setTransactions] = useState<Transaction[]>([])
 
-  // Load from localStorage
   useEffect(() => {
     const stored = localStorage.getItem('transactions')
     if (stored) {
@@ -32,7 +34,6 @@ export default function TransactionForm() {
     }
   }, [])
 
-  // Save to localStorage
   useEffect(() => {
     localStorage.setItem('transactions', JSON.stringify(transactions))
   }, [transactions])
@@ -62,29 +63,13 @@ export default function TransactionForm() {
     <div className="max-w-2xl mx-auto px-4 py-8 space-y-8">
       <h1 className="text-3xl font-extrabold text-center text-indigo-600">💸 Personal Finance Tracker</h1>
 
+      {/* Add Transaction */}
       <Card className="bg-indigo-50 shadow-md rounded-xl">
         <CardContent className="p-6 space-y-4">
           <form onSubmit={handleSubmit} className="space-y-4">
-            <Input
-              type="number"
-              placeholder="💰 Amount (₹)"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
-              className="bg-white"
-            />
-            <Input
-              type="date"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-              className="bg-white"
-            />
-            <Input
-              type="text"
-              placeholder="📝 Description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              className="bg-white"
-            />
+            <Input type="number" placeholder="💰 Amount (₹)" value={amount} onChange={(e) => setAmount(e.target.value)} className="bg-white" />
+            <Input type="date" value={date} onChange={(e) => setDate(e.target.value)} className="bg-white" />
+            <Input type="text" placeholder="📝 Description" value={description} onChange={(e) => setDescription(e.target.value)} className="bg-white" />
             <Select onValueChange={setCategory} value={category}>
               <SelectTrigger className="w-full bg-white">
                 <SelectValue placeholder="🏷️ Select Category" />
@@ -97,18 +82,31 @@ export default function TransactionForm() {
                 <SelectItem value="others">Others</SelectItem>
               </SelectContent>
             </Select>
-
             {error && <p className="text-red-500 text-sm">{error}</p>}
             <Button type="submit" className="w-full bg-indigo-600 hover:bg-indigo-700 text-white">➕ Add Transaction</Button>
           </form>
         </CardContent>
       </Card>
 
+      {/* Dashboard Summary & Budgeting */}
+      <DashboardSummary transactions={transactions} />
+      <BudgetManager />
+
+      {/* Budget Insights - Client Only */}
+      <ClientOnly>
+        <BudgetInsights transactions={transactions} />
+      </ClientOnly>
+
+      {/* Charts */}
       <MonthlyChart transactions={transactions} />
       <CategoryChart transactions={transactions} />
-      <DashboardSummary transactions={transactions} />
 
-      <div className="space-y-3">
+      {/* Transaction List */}
+      <div className="space-y-3 mt-8">
+        <h2 className="text-lg font-semibold text-indigo-700 mb-2 border-b pb-1">
+          📋 Transactions List
+        </h2>
+
         {transactions.length === 0 ? (
           <p className="text-center text-gray-400">No transactions yet.</p>
         ) : (
@@ -121,12 +119,7 @@ export default function TransactionForm() {
                 </div>
                 <div className="flex items-center gap-4">
                   <p className="text-md font-bold text-green-600">₹ {txn.amount}</p>
-                  <button
-                    onClick={() => handleDelete(index)}
-                    className="text-red-500 hover:text-red-700 text-sm"
-                  >
-                    ❌
-                  </button>
+                  <button onClick={() => handleDelete(index)} className="text-red-500 hover:text-red-700 text-sm">❌</button>
                 </div>
               </CardContent>
             </Card>
